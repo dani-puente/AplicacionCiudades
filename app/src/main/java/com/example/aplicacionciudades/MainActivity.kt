@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
@@ -12,6 +13,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.aplicacionciudades.mainScreen.MakeToolbar
+import com.example.aplicacionciudades.mainScreen.cardsLugares.MakeItemPlaceList
+import com.example.aplicacionciudades.mainScreen.drawer.MakeDrawerView
 import com.example.aplicacionciudades.ui.theme.AplicacionCiudadesTheme
 import kotlinx.coroutines.launch
 
@@ -27,15 +30,19 @@ class MainActivity : ComponentActivity() {
                     val scaffoldState = rememberScaffoldState()
                     val scope = rememberCoroutineScope()
                     val icono = R.drawable.ic_favorito_lleno
-                    MakeToolbar(
-                        scaffoldState,
-                        onNavigationIconClick = {
-                            scope.launch {
-                                scaffoldState.drawerState.open()
+                    Scaffold(
+                        scaffoldState = scaffoldState,
+                        topBar = {
+                            MakeToolbar {
+                                scope.launch { scaffoldState.drawerState.open() }
                             }
                         },
-                        icono
-                    )
+                        drawerContent = {
+                            MakeDrawerView(icono = icono)
+                        }
+                    ) {
+                        MakeItemPlaceList()
+                    }
                 }
             }
         }
@@ -57,15 +64,19 @@ fun DefaultPreview() {
             val scaffoldState = rememberScaffoldState()
             val scope = rememberCoroutineScope()
             val icono = R.drawable.ic_favorito_lleno
-            MakeToolbar(
-                scaffoldState,
-                onNavigationIconClick = {
-                    scope.launch {
-                        scaffoldState.drawerState.open()
+            Scaffold(
+                scaffoldState = scaffoldState,
+                topBar = {
+                    MakeToolbar {
+                        scope.launch { scaffoldState.drawerState.open() }
                     }
                 },
-                icono
-            )
+                drawerContent = {
+                    MakeDrawerView(icono = icono)
+                }
+            ) {
+
+            }
         }
     }
 }
