@@ -3,6 +3,7 @@ package com.example.aplicacionciudades
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -11,6 +12,7 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.aplicacionciudades.mainScreen.MakeToolbar
 import com.example.aplicacionciudades.mainScreen.cardsLugares.MakeItemPlaceList
@@ -19,6 +21,7 @@ import com.example.aplicacionciudades.ui.theme.AplicacionCiudadesTheme
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -30,6 +33,7 @@ class MainActivity : ComponentActivity() {
                     val scaffoldState = rememberScaffoldState()
                     val scope = rememberCoroutineScope()
                     val icono = R.drawable.ic_favorito_lleno
+
                     Scaffold(
                         scaffoldState = scaffoldState,
                         topBar = {
@@ -48,7 +52,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
 
 @Preview(
 
@@ -75,7 +78,7 @@ fun DefaultPreview() {
                     MakeDrawerView(icono = icono)
                 }
             ) {
-
+                MakeItemPlaceList()
             }
         }
     }
